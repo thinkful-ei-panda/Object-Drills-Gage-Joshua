@@ -103,5 +103,68 @@ function reportTo(ar) {
 }
   
 reportTo(arrB);
+
 //part6 
 
+const codes = {
+    a : 'z',
+    b : 'y', 
+    c : 'x',
+    d : 'w',
+    e : 'v',
+    f : 'u',
+    g : 't',
+    h : 's',
+    i : 'r',
+    j : 'q',
+    k : 'p',
+    l : 'o',
+    m : 'n',
+    n : 'm',
+    o : 'l',
+    p : 'k',
+    q : 'j',
+    r : 'i',
+    s : 'h',
+    t : 'g',
+    u : 'f',
+    v : 'e',
+    w : 'd',
+    x : 'c',
+    y : 'b',
+    z : 'a'
+  } ;
+
+function decode(str) {
+  let rev = ''
+    str.split('').forEach( x => {
+      if (codes[x]  in codes){
+        rev += codes[x] ;
+      }else{
+        rev += x ;
+      }
+       
+    });
+    return rev; 
+}
+
+
+log(decode('word is a part of a sentence'));
+// part 7
+
+class LOTR {
+  constructor (name, nickname , race, origin, atk, ac){
+    this.name = name;
+    this.nickname = nickname;
+    this.race = race ;
+    this.origin = origin;
+    this.atk = atk;
+    this.ac = ac;
+  }
+  //desciption
+    this.describe() {
+     return `${name} is a ${race} from ${origin}.` 
+    }
+  
+
+}
