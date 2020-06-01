@@ -151,7 +151,7 @@ function decode(str) {
 
 log(decode('word is a part of a sentence'));
 // part 7
-
+// creating LOTR class creator
 class LOTR {
   constructor (name, nickname , race, origin, atk, ac){
     this.name = name;
@@ -168,3 +168,4 @@ class LOTR {
   
 
 }
+
