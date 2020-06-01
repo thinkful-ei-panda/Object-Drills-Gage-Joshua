@@ -107,64 +107,94 @@ reportTo(arrB);
 //part6 
 
 const codes = {
-    a : 'z',
-    b : 'y', 
-    c : 'x',
-    d : 'w',
-    e : 'v',
-    f : 'u',
-    g : 't',
-    h : 's',
-    i : 'r',
-    j : 'q',
-    k : 'p',
-    l : 'o',
-    m : 'n',
-    n : 'm',
-    o : 'l',
-    p : 'k',
-    q : 'j',
-    r : 'i',
-    s : 'h',
-    t : 'g',
-    u : 'f',
-    v : 'e',
-    w : 'd',
-    x : 'c',
-    y : 'b',
-    z : 'a'
-  } ;
+  a : 'z',
+  b : 'y', 
+  c : 'x',
+  d : 'w',
+  e : 'v',
+  f : 'u',
+  g : 't',
+  h : 's',
+  i : 'r',
+  j : 'q',
+  k : 'p',
+  l : 'o',
+  m : 'n',
+  n : 'm',
+  o : 'l',
+  p : 'k',
+  q : 'j',
+  r : 'i',
+  s : 'h',
+  t : 'g',
+  u : 'f',
+  v : 'e',
+  w : 'd',
+  x : 'c',
+  y : 'b',
+  z : 'a'
+} ;
 
 function decode(str) {
-  let rev = ''
-    str.split('').forEach( x => {
-      if (codes[x]  in codes){
-        rev += codes[x] ;
-      }else{
-        rev += x ;
-      }
+  let rev = '';
+  str.split('').forEach( x => {
+    if (codes[x]  in codes){
+      rev += codes[x] ;
+    }else{
+      rev += x ;
+    }
        
-    });
-    return rev; 
+  });
+  return rev; 
 }
 
 
 log(decode('word is a part of a sentence'));
 // part 7
 
-class LOTR {
-  constructor (name, nickname , race, origin, atk, ac){
-    this.name = name;
-    this.nickname = nickname;
-    this.race = race ;
-    this.origin = origin;
-    this.atk = atk;
-    this.ac = ac;
-  }
-  //desciption
-    this.describe() {
-     return `${name} is a ${race} from ${origin}.` 
-    }
-  
 
+function createCharacter(name, nickname , race, origin, atk, ac){
+  return {
+    name : name,
+    nickname : nickname,
+    race : race ,
+    origin : origin,
+    atk : atk,
+    ac : ac,
+    describe(){
+      return `${this.name} is a ${this.race} from ${this.origin}.` ; 
+    },
+    evaluateFight(agrsser){
+      let y;
+      let x;
+      
+      if(agrsser.atk < this.ac){
+        y = 0;
+      }else{
+        y = agrsser.atk - this.ac;
+      }
+      if(this.atk < agrsser.ac){
+        x = 0 ;
+      }else{
+        x = this.atk - agrsser.ac;
+      }
+      return `Your opponent takes ${x} damage and you receive ${y} damage`;
+    }
+  };
 }
+
+let LOTRG = [
+  createCharacter('Gandalf the White','gandalf','Wizard','Middle Earth',10,6),
+  createCharacter('Bilbo Baggins','bilbo','Hobbit','The Shire',2,1),
+  createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2),
+  createCharacter('Aragorn son of Arathorn','aragorn','Man','Dunnedain',6,8),
+  createCharacter('Legolas','legolas','Elf','Woodland Realm'8,5)
+]
+let Gage = createCharacter(`gage`, `dude`, `human`,`unknown`,5,3);
+
+
+log(JSON.stringify(createCharacter(`gage`, `dude`, `human`,`unknown`,5,3)));
+
+let J = createCharacter(`Jay`, `J`, `elf`,`unknown`,7,1)
+
+log(Gage.evaluateFight(J));
