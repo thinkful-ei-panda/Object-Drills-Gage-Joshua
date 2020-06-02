@@ -188,13 +188,57 @@ let LOTRG = [
   createCharacter('Bilbo Baggins','bilbo','Hobbit','The Shire',2,1),
   createCharacter('Frodo Baggins','frodo','Hobbit','The Shire',3,2),
   createCharacter('Aragorn son of Arathorn','aragorn','Man','Dunnedain',6,8),
-  createCharacter('Legolas','legolas','Elf','Woodland Realm'8,5)
-]
-let Gage = createCharacter(`gage`, `dude`, `human`,`unknown`,5,3);
+  createCharacter('Legolas','legolas','Elf','Woodland Realm',8,5)
+];
+let Gage = createCharacter('gage', 'dude', 'human','unknown',5,3);
 
+let Arwen = createCharacter('Arwen Undomiel', 'Arwen', 'Half-Elf', 'Rivendell', 5, 4);
 
-log(JSON.stringify(createCharacter(`gage`, `dude`, `human`,`unknown`,5,3)));
+LOTRG.push(Gage,Arwen);
 
-let J = createCharacter(`Jay`, `J`, `elf`,`unknown`,7,1)
+//log(JSON.stringify(LOTRG));
+
+function describeCharacter(Char){
+  let per = LOTRG.find( x => Char === x.name);
+  log(per);
+  return per.describe();
+}
+
+log(describeCharacter('gage')); 
+
+function findRace(race){
+  let rev = LOTRG.filter(x => x.race === race);
+  return rev; 
+}
+
+log(JSON.stringify(findRace('Hobbit')));
+
+function findPowerTeam() {
+  return LOTRG.filter(x => x.atk > 5);
+}
+
+log(JSON.stringify(findPowerTeam()));
+
+log(JSON.stringify(createCharacter('gage', 'dude', 'human','unknown',5,3)));
+
+let J = createCharacter('Jay', 'J', 'elf','unknown',7,1);
 
 log(Gage.evaluateFight(J));
+
+// add weapon with weapons
+
+function equip(target,weapon){
+  for(let i in LOTRG){
+    
+    if (LOTRG[i].name === target){
+      return LOTRG[i].weapon = weapon; 
+    }
+  }
+};
+
+// log(JSON.stringify(equip('gage','m.l.g.s.')));
+//nice it works 
+// log(JSON.stringify(LOTRG));
+
+// considering that someone turned this thing into a full blown RPG. and im still here i might as call it a night :|
+//Gage out (for now)
